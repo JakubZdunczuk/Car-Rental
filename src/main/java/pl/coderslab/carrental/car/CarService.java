@@ -1,8 +1,10 @@
-package pl.coderslab.car_longrental.car;
+package pl.coderslab.carrental.car;
 
 import java.util.List;
 
 public interface CarService {
+
+    void saveCar(Car car);
 
     List<Car> findByBrand(String name);
     List<Car> findByModel(String name);

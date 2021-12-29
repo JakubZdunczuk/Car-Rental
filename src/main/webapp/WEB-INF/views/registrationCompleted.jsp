@@ -7,7 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="fragments/header.jsp" %>
-
-<div style="justify-content: center">Rejestracja zakończona pomyślnie, teraz się zaloguj</div>
+<section class="padding-medium story bg-light" id="about">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="col-7 ml-4"><h3 class="pb-1">
+            Rejestracja zakończona pomyślnie, teraz się <a href="/login">zaloguj</a></h3></div>
+    </div>
+</section>
 
 <%@ include file="fragments/footer.jsp" %>

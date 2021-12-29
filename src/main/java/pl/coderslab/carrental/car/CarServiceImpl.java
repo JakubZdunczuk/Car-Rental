@@ -1,4 +1,4 @@
-package pl.coderslab.car_longrental.car;
+package pl.coderslab.carrental.car;
 
 import org.springframework.stereotype.Service;
 
@@ -10,6 +10,11 @@ public class CarServiceImpl implements CarService {
 
     public CarServiceImpl(CarRepository carRepository) {
         this.carRepository = carRepository;
+    }
+
+    @Override
+    public void saveCar(Car car) {
+        carRepository.save(car);
     }
 
     @Override

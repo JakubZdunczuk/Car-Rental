@@ -1,4 +1,4 @@
-package pl.coderslab.car_longrental;
+package pl.coderslab.carrental;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

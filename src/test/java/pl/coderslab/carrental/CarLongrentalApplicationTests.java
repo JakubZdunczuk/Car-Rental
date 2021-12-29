@@ -1,4 +1,4 @@
-package pl.coderslab.car_longrental;
+package pl.coderslab.carrental;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

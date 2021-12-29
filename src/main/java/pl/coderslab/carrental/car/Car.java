@@ -1,6 +1,7 @@
-package pl.coderslab.car_longrental.car;
+package pl.coderslab.carrental.car;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "cars")
+@NoArgsConstructor
 public class Car {
 
     @Id

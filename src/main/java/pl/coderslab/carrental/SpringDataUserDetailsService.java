@@ -1,4 +1,4 @@
-package pl.coderslab.car_longrental;
+package pl.coderslab.carrental;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -6,8 +6,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import pl.coderslab.car_longrental.users.User;
-import pl.coderslab.car_longrental.users.UserService;
+import pl.coderslab.carrental.user.User;
+import pl.coderslab.carrental.user.UserService;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,6 +1,4 @@
-package pl.coderslab.car_longrental.users;
-
-import org.springframework.stereotype.Service;
+package pl.coderslab.carrental.user;
 
 import java.util.List;
 

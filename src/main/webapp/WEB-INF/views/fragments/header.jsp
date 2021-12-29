@@ -42,8 +42,9 @@
                 <a class="nav-link" href="/dashboard">Dashboard</a>
                 <form id="logoutForm" method="POST" action="/logout">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <div class="text-center"><input type="submit" value="Logout"/></div>
                 </form>
-                <a onclick="document.forms['logoutForm'].submit()" href="#">Logout</a></h2>
+<%--                <a onclick="document.forms['logoutForm'].submit()" href="#">Wyloguj</a></h2>--%>
             </c:when>
             <c:otherwise>
                 <hr class="dropdown-divider"/>

@@ -1,4 +1,4 @@
-package pl.coderslab.car_longrental.car;
+package pl.coderslab.carrental.car;
 
 import lombok.Getter;
 import lombok.Setter;
