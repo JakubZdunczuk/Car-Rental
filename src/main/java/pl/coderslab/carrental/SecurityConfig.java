@@ -14,10 +14,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/dashboard/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/dashboard/**").hasAnyRole("ADMIN")
                 .and().formLogin()
                 .loginPage("/login");
-    }
+
+            http.authorizeRequests()
+                    .antMatchers("/menu/**").hasAnyRole("USER", "ADMIN")
+                .and().formLogin()
+                .loginPage("/login");
+}
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

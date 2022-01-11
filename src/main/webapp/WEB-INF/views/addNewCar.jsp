@@ -9,9 +9,9 @@
     <div>marka:</div>
     <form:select path="model.brand">
     <c:choose>
-    <c:when test="${not empty carList}">
-        <c:forEach var="car" items="${carList}">
-            <form:option value="${car.model.brand}">${car.model.brand}</form:option>
+    <c:when test="${not empty brandList}">
+        <c:forEach var="brand" items="${brandList}">
+            <form:option value="${brand.brandName}">${brand.brandName}</form:option>
         </c:forEach>
     </c:when>
     <c:otherwise>

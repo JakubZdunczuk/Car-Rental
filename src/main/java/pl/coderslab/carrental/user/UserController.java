@@ -21,7 +21,6 @@ public class UserController {
     }
 
     private final UserService userService;
-    private PasswordValidator passwordValidator;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -33,14 +32,50 @@ public class UserController {
         User user = new User();
         user.setUsername("admin");
         user.setPassword("admin");
+        user.setEmail("admin@admin.com");
+        user.setPasswordConfirm("admin");
         userService.saveUser(user);
         return "admin";
+    }
+
+    @RequestMapping(value = "/login")
+    public String login(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
     }
 
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
         return "register";
+    }
+
+    @PostMapping("/login")
+    public String loginPost(@Valid User user, BindingResult result) {
+        List<User> userList = userService.findAll();
+        boolean exists = false;
+        for(User u:userList){
+            if (u.getUsername().equals(user.getUsername())){
+                exists=true;
+            }
+        }
+        if (result.hasErrors() && !exists){
+            result.rejectValue("user", "error.user", "błędna nazwa użytkownika");
+            result.rejectValue("password", "error.password", "błędne hasło");
+        }
+        if (!exists){
+            result.rejectValue("user", "error.user", "błędna nazwa użytkownika");
+        }
+        if(result.hasErrors()){
+            return "login";
+        }
+
+        for(Role role:user.getRoles())
+        if (role.getName().equals("ROLE_ADMIN")) {
+            return "redirect:menu";
+        }
+        return "redirect:dashboard";
+
     }
 
     @PostMapping("/register")
@@ -50,14 +85,14 @@ public class UserController {
         for (User u : userList) {
             if (u.getUsername().equals(user.getUsername())) {
 
-               result.rejectValue("username", "error.username","nazwa użytkownika już istnieje");
+                result.rejectValue("username", "error.username", "nazwa użytkownika już istnieje");
             }
             if (u.getEmail().equals(user.getEmail())) {
                 result.rejectValue("email", "error.email", "email już został użyty");
             }
         }
         if (!user.getPassword().equals(user.getPasswordConfirm())) {
-            result.rejectValue("passwordConfirm", "error.passwordConfirm","hasła nie są zgodne!");
+            result.rejectValue("passwordConfirm", "error.passwordConfirm", "hasła nie są zgodne!");
         }
 
         if (result.hasErrors()) {
@@ -66,8 +101,9 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/registrationCompleted";
     }
+
     @GetMapping("/registrationCompleted")
-    public String regComplete(){
+    public String regComplete() {
 
         return "registrationCompleted";
     }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: jakub
@@ -9,15 +10,17 @@
 <%@ include file="fragments/header.jsp" %>
 <div class="text-center fw-bold">LOGOWANIE</div>
 <br>
-<form method="post">
+<form:form method="post" modelAttribute="user">
     <div class="text-center">
-        User Name:<input type="text" name="username"/>
-        Password:<input type="password" name="password"/>
+        User Name:<form:input type="text" name="username" path="username"/><p1 class="text-danger"><form:errors path="username"/></p1>
+
+        Password:<form:input type="password" name="password" path="password"/><p1 class="text-danger"><form:errors path="password"/></p1>
     </div>
+    <form:errors path="*"/>
     <br>
     <div class="text-center"><input type="submit" value="Sign In"/></div>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
+</form:form>
 <div class="text-center">nie masz jeszcze konta? <a href="/register"> zarejestruj się!</a></div>
 
 <%@ include file="fragments/footer.jsp" %>
