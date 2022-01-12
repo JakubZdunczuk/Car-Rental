@@ -16,8 +16,12 @@
 
         Password:<form:input type="password" name="password" path="password"/><p1 class="text-danger"><form:errors path="password"/></p1>
     </div>
-    <form:errors path="*"/>
     <br>
+    <c:if test="${param.error!=null}">
+        <div class="text-center">
+        Nazwa użytkownika lub hasło jest nieprawidłowe. Spróbuj ponownie
+        </div>
+    </c:if>
     <div class="text-center"><input type="submit" value="Sign In"/></div>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form:form>

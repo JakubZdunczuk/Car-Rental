@@ -26,17 +26,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/create-user")
-    @ResponseBody
-    public String createUser() {
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword("admin");
-        user.setEmail("admin@admin.com");
-        user.setPasswordConfirm("admin");
-        userService.saveUser(user);
-        return "admin";
-    }
+//    @GetMapping("/create-user")
+//    @ResponseBody
+//    public String createUser() {
+//        User user = new User();
+//        user.setUsername("admin");
+//        user.setPassword("admin");
+//        user.setEmail("admin@admin.com");
+//        user.setPasswordConfirm("admin");
+//        userService.saveUser(user);
+//        return "admin";
+//    }
 
     @RequestMapping(value = "/login")
     public String login(Model model) {
@@ -50,33 +50,6 @@ public class UserController {
         return "register";
     }
 
-    @PostMapping("/login")
-    public String loginPost(@Valid User user, BindingResult result) {
-        List<User> userList = userService.findAll();
-        boolean exists = false;
-        for(User u:userList){
-            if (u.getUsername().equals(user.getUsername())){
-                exists=true;
-            }
-        }
-        if (result.hasErrors() && !exists){
-            result.rejectValue("user", "error.user", "błędna nazwa użytkownika");
-            result.rejectValue("password", "error.password", "błędne hasło");
-        }
-        if (!exists){
-            result.rejectValue("user", "error.user", "błędna nazwa użytkownika");
-        }
-        if(result.hasErrors()){
-            return "login";
-        }
-
-        for(Role role:user.getRoles())
-        if (role.getName().equals("ROLE_ADMIN")) {
-            return "redirect:menu";
-        }
-        return "redirect:dashboard";
-
-    }
 
     @PostMapping("/register")
     public String registerPost(@Valid User user, BindingResult result) {

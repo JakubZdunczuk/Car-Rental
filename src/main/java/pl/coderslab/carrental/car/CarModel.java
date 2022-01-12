@@ -1,6 +1,8 @@
 package pl.coderslab.carrental.car;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,12 +17,11 @@ public class CarModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String modelName;
-    private String generation;
     @ManyToOne
     private Brand brand;
 
     @Override
     public String toString() {
-        return brand + " " + modelName + ", generacja: " + generation;
+        return brand + " " + modelName;
     }
 }

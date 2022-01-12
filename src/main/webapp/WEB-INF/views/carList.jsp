@@ -10,14 +10,21 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="<spring:url value="/images/logos/${car.model.brand}.png"/>" alt="..." />
+                            <img class="card-img-top" src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">${car.model}</h5>
                                     <!-- Product price-->
+                                    <c:choose>
+                                    <c:when test="${car.promotion==1}">
+                                        <div class="text-danger">już od ${car.price}PLN/doba!</div>
+                                    </c:when>
+                                        <c:otherwise>
                                     cena: ${car.price}PLN/doba
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                             <!-- Product actions-->

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Locale;
 
 @Getter
 @Setter
@@ -18,6 +19,8 @@ public class Brand {
 
     @Override
     public String toString() {
-        return brandName.toLowerCase();
+        return brandName;
     }
+
+    public String getLowercase() { return brandName.toLowerCase(); }
 }

@@ -39,7 +39,7 @@
             </ul>
             <c:choose>
             <c:when test="${pageContext.request.userPrincipal.name.equals('admin')}">
-                <a class="nav-link" href="/dashboard/menu">Dashboard</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
                 <form id="logoutForm" method="POST" action="/logout">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="text-center"><input type="submit" value="Logout"/></div>
@@ -47,7 +47,7 @@
 <%--                <a onclick="document.forms['logoutForm'].submit()" href="#">Wyloguj</a></h2>--%>
             </c:when>
                 <c:when test="${pageContext.request.userPrincipal.name !=null}">
-                    <a class="nav-link" href="/menu/menu">Dashboard</a>
+                    <a class="nav-link" href="/menu">Dashboard</a>
                     <form id="logoutForm" method="POST" action="/logout">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <div class="text-center"><input type="submit" value="Logout"/></div>

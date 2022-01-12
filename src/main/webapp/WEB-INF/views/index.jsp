@@ -10,7 +10,7 @@
       <div class="col mb-5">
         <div class="card h-100">
           <!-- Product image-->
-          <img class="card-img-top" src="<spring:url value="/images/logos/${car.model.brand}.png"/>" alt="..." />
+          <img class="card-img-top" src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>" alt="..." />
           <!-- Product details-->
           <div class="card-body p-4">
             <div class="text-center">

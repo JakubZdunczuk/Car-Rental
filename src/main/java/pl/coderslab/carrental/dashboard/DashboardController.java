@@ -2,13 +2,17 @@ package pl.coderslab.carrental.dashboard;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.carrental.car.BrandService;
-import pl.coderslab.carrental.car.Car;
-import pl.coderslab.carrental.car.CarService;
+import org.springframework.web.bind.annotation.ResponseBody;
+import pl.coderslab.carrental.car.*;
 import pl.coderslab.carrental.user.UserService;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/dashboard")
@@ -16,14 +20,16 @@ public class DashboardController {
     private final UserService userService;
     private final CarService carService;
     private final BrandService brandService;
+    private final CarModelService carModelService;
 
-    public DashboardController(UserService userService, CarService carService, BrandService brandService) {
+    public DashboardController(UserService userService, CarService carService, BrandService brandService, CarModelService carModelService) {
         this.userService = userService;
         this.carService = carService;
         this.brandService = brandService;
+        this.carModelService = carModelService;
     }
 
-    @RequestMapping("/menu")
+    @RequestMapping()
     public String Menu() {
 
         return "dashboard";
@@ -37,10 +43,37 @@ public class DashboardController {
     }
 
     @PostMapping("/add")
-    public String addNewCarPost(Car car) {
+    public String addNewCarPost(@Valid Car car, BindingResult bindingResult, Model model) {
+        model.addAttribute("brandList", brandService.findAll());
+  boolean found=false;
+        if (bindingResult.hasErrors()) {
+            return "addNewCar";
+        }
+        CarModel carModel = new CarModel();
+        List<CarModel> carModelList = carModelService.findAll();
+        for (CarModel cm : carModelList) {
+            if (car.getModel().getModelName().equals(cm.getModelName())) {
+                carModel.setId(cm.getId());
+                found=true;
+            }
+        }
+        if(!found){
+            carModel.setModelName(car.getModel().getModelName());
+            carModel.setBrand(car.getModel().getBrand());
+        }
+        carModelService.saveCarModel(carModel);
+        car.setModel(carModel);
         carService.saveCar(car);
-        return "addNewCar";
+        return "redirect:confirm";
     }
+
+    @RequestMapping("/confirm")
+    @ResponseBody
+    public String Confirmation() {
+
+        return "samochod dodany";
+    }
+
 
     @RequestMapping("/carlist")
     public String CarList() {
