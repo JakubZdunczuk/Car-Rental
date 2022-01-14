@@ -3,6 +3,7 @@ package pl.coderslab.carrental;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.carrental.car.CarService;
 
 @Controller
@@ -30,7 +31,5 @@ public class HomeController {
     public String contact() {
         return "contact";
     }
-
-
 
 }

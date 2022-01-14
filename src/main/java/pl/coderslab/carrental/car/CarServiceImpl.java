@@ -18,6 +18,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public void delete(Car car) { carRepository.delete(car);}
+
+    @Override
     public List<Car> findByBrand(String name) {
         return null;
     }

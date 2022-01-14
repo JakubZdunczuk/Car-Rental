@@ -6,12 +6,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.carrental.car.*;
 import pl.coderslab.carrental.user.UserService;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -52,36 +50,51 @@ public class DashboardController {
         CarModel carModel = new CarModel();
         List<CarModel> carModelList = carModelService.findAll();
         for (CarModel cm : carModelList) {
-            if (car.getModel().getModelName().equals(cm.getModelName())) {
+            if (car.getModel().getModelName().equals(cm.getModelName()) && car.getModel().getBrand().equals(cm.getBrand())) {
                 carModel.setId(cm.getId());
+                carModel.setModelName(car.getModel().getModelName());
+                carModel.setBrand(car.getModel().getBrand());
+                car.setModel(carModel);
+                carService.saveCar(car);
                 found=true;
             }
         }
         if(!found){
             carModel.setModelName(car.getModel().getModelName());
             carModel.setBrand(car.getModel().getBrand());
+            carModelService.saveCarModel(carModel);
+            car.setModel(carModel);
+            carService.saveCar(car);
         }
-        carModelService.saveCarModel(carModel);
-        car.setModel(carModel);
-        carService.saveCar(car);
+
         return "redirect:confirm";
     }
 
     @RequestMapping("/confirm")
-    @ResponseBody
     public String Confirmation() {
-
-        return "samochod dodany";
+        return "caradded";
     }
 
 
     @RequestMapping("/carlist")
-    public String CarList() {
-
-        return "CarListEdit";
+    public String CarList(Model model) {
+model.addAttribute("carlist", carService.findAll());
+        return "carListEdit";
     }
 
-    @RequestMapping("/userlist")
+    @RequestMapping("/messages")
+    public String Messages(Model model) {
+
+        return "messages";
+    }
+
+    @RequestMapping("/changepass")
+    public String Change(Model model) {
+
+        return "changepass";
+    }
+
+    @RequestMapping("/users")
     public String UserList(Model model) {
         model.addAttribute("userList", userService.findAll());
         return "UserList";

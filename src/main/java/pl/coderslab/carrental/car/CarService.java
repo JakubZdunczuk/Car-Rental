@@ -12,5 +12,6 @@ public interface CarService {
     List<Car> findByPromotion(int i);
     List<Car> findAll();
     Car findById(long id);
+    void delete(Car car);
 }
 

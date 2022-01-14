@@ -14,14 +14,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/dashboard/**").hasAnyRole("ADMIN")
+                .antMatchers("/dashboard/**").hasAnyRole("ADMIN").antMatchers("/menu/**").hasAnyRole("USER", "ADMIN")
                 .and().formLogin()
                 .loginPage("/login");
 
-            http.authorizeRequests()
-                    .antMatchers("/menu/**").hasAnyRole("USER", "ADMIN")
-                .and().formLogin()
-                .loginPage("/login");
 }
 
     @Bean
