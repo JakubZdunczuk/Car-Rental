@@ -4,7 +4,7 @@
 <!-- Section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
-        <p class="lead fw-normal text-white-50 mb-0">Wszystkie nasze auta:</p>
+        <p class="lead fw-normal  text-center text-black-50 mb-0">Wszystkie nasze auta:</p>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <c:forEach items="${car}" var="car">
                     <div class="col mb-5">
@@ -25,6 +25,7 @@
                                     cena: ${car.price}PLN/doba
                                         </c:otherwise>
                                     </c:choose>
+                                    <h5 class="fw-normal">od ${car.price*18}PLN za miesiąc</h5>
                                 </div>
                             </div>
                             <!-- Product actions-->

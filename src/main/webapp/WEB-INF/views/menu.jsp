@@ -8,9 +8,9 @@
     </li>
     <a class="dropdown-item" href="/menu/actual">Aktualnie wypożyczone auta</a>
     <a class="dropdown-item" href="/menu/history">Historia wypożyczeń</a>
-    <a class="dropdown-item" href="/menu/write">Napisz wiadomość do CarRental</a>
-    <a class="dropdown-item" href="/menu/changepass">Zmień hasło</a>
-    <a class="dropdown-item" href="/menu/details">Zmień dane</a>
+    <a class="dropdown-item" href="/menu/#">Napisz wiadomość do CarRental (aktualnie niedostępne)</a>
+    <a class="dropdown-item" href="/menu/#">Zmień hasło (aktualnie niedostępne)</a>
+    <a class="dropdown-item" href="/menu/#">Zmień dane (aktualnie niedostępne)</a>
 </div>
 <section class="padding-medium story bg-light">
     <div class="py-5">

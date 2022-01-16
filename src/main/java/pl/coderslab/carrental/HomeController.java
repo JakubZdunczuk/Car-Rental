@@ -2,6 +2,7 @@ package pl.coderslab.carrental;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.carrental.car.CarService;
@@ -18,7 +19,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(Model model) {
-   model.addAttribute("car",carService.findByPromotion(1));
+   model.addAttribute("car",carService.findByRentedFalseAndPromotion(1));
         return "index";
     }
 
@@ -32,4 +33,15 @@ public class HomeController {
         return "contact";
     }
 
+    @GetMapping("short")
+    public String carsShortTerm(Model model) {
+        model.addAttribute("car", carService.findAllByRentedFalse());
+        return "shortTerm";
+    }
+
+    @GetMapping("long")
+    public String carsLongTerm(Model model) {
+        model.addAttribute("car", carService.findAllByRentedFalse());
+        return "longTerm";
+    }
 }

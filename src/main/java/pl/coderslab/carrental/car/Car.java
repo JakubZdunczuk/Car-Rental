@@ -41,6 +41,7 @@ public class Car {
     @NotEmpty(message = "{car.notempty}")
     private String specification;
     private int promotion;
+    private boolean rented = false;
 
     @ManyToOne
     @NotNull(message = "{car.notempty}")

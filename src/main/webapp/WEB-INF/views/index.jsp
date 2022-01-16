@@ -17,7 +17,9 @@
               <!-- Product name-->
               <h5 class="fw-bolder">${car.model}</h5>
               <!-- Product price-->
-              <div class="text-danger">już od ${car.price}PLN/doba!</div>
+              <div class="text-danger">PROMOCJA! Już od ${car.price}PLN/doba!</div>
+              <br>
+              <h5 class="fw-normal">od ${car.price*18}PLN za miesiąc</h5>
             </div>
           </div>
           <!-- Product actions-->
