@@ -8,7 +8,7 @@
         <a class="dropdown-item" href="/dashboard/add">Dodaj nowe auto</a>
         <a class="dropdown-item" href="/dashboard/#">Edytuj dostępne auta (aktualnie niedostępne)</a>
         <a class="dropdown-item" href="/dashboard/#">Wiadomości (aktualnie niedostępne)</a>
-        <a class="dropdown-item" href="/dashboard/#">Zmień hasło (aktualnie niedostępne)</a>
+        <a class="dropdown-item" href="/dashboard/changepass">Zmień hasło</a>
         <a class="dropdown-item" href="/dashboard/#">Użytkownicy (aktualnie niedostępne)</a>
 </div>
 <section class="padding-medium story bg-light">

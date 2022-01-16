@@ -33,6 +33,8 @@ public class User {
     @Transient
     @NotNull(message = "wpisz ponownie hasło") @NotEmpty(message = "Wpisz ponownie hasło")
     private String passwordConfirm;
+    @Transient
+    private String newPassword;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),

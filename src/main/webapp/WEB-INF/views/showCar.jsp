@@ -68,8 +68,16 @@
             </c:choose>
         </div>
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                        href="/cars/${car.id}/rent">Wynajmij</a>
+            <div class="text-center">
+<c:choose>
+    <c:when test="${pageContext.request.remoteUser==null}">
+                <h4>Aby wynająć auto, musisz się zalogować</h4>
+        <a class="btn btn-outline-dark mt-auto" href="/cars/${car.id}/rent">Wynajmij (przejdź do logowania)</a>
+    </c:when>
+    <c:otherwise>
+                <a class="btn btn-outline-dark mt-auto" href="/cars/${car.id}/rent">Wynajmij</a>
+    </c:otherwise>
+</c:choose>
             </div>
         </div>
     </div>

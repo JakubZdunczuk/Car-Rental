@@ -1,5 +1,6 @@
 package pl.coderslab.carrental.dashboard;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -7,8 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.carrental.car.*;
+import pl.coderslab.carrental.user.User;
 import pl.coderslab.carrental.user.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -19,12 +22,14 @@ public class DashboardController {
     private final CarService carService;
     private final BrandService brandService;
     private final CarModelService carModelService;
+    private final PasswordEncoder passwordEncoder;
 
-    public DashboardController(UserService userService, CarService carService, BrandService brandService, CarModelService carModelService) {
+    public DashboardController(UserService userService, CarService carService, BrandService brandService, CarModelService carModelService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.carService = carService;
         this.brandService = brandService;
         this.carModelService = carModelService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping()
@@ -90,8 +95,37 @@ model.addAttribute("carlist", carService.findAll());
 
     @RequestMapping("/changepass")
     public String Change(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "changePass";
+    }
+    @PostMapping("/changepass")
+    public String ChangePost(User user, BindingResult result, HttpServletRequest servletRequest) {
+        User loggedUser = userService.findByUserName(servletRequest.getRemoteUser());
 
-        return "changepass";
+        if(!passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())){
+            result.rejectValue("password", "error.password", "Hasło nieprawidłowe");
+        }
+        if(user.getPassword().equals(user.getNewPassword())){
+            result.rejectValue("newPassword", "error.newPassword", "Obecne i nowe hasło są takie same");
+        }
+        if(!user.getPasswordConfirm().equals(user.getNewPassword())){
+            result.rejectValue("passwordConfirm", "error.passwordConfirm", "Powtórz nowe hasło");
+        }
+        if(result.hasErrors()){
+            return "changePass";
+        }
+        else{
+            loggedUser.setPassword(user.getNewPassword());
+            loggedUser.setPasswordConfirm(user.getPasswordConfirm());
+            userService.updateUser(loggedUser);
+        }
+        return "redirect:changepasscompleted";
+    }
+
+    @RequestMapping("/changepasscompleted")
+    public String Completed() {
+        return "changePassCompleted";
     }
 
     @RequestMapping("/users")

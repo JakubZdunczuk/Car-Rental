@@ -30,4 +30,7 @@ public class RentHistory {
     @Column(columnDefinition = "DATE")
     private LocalDate rentDay;
     private boolean rented=true;
+
+    @NotNull
+    private long price;
 }

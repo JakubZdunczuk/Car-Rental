@@ -10,9 +10,7 @@
 <section class="padding-medium story bg-light" id="about">
     <div class="container d-flex justify-content-center align-items-center">
         <div class="col-7 ml-4"><h3 class="pb-1">
-            Całkowity koszt: ${price}PLN
-            <br>
-            Wynajem zakończony pomyślnie, wróć do <a href="/cars">listy aut</a></h3></div>
+            Zmiana hasła zakończona pomyślnie!</h3></div>
     </div>
 </section>
 

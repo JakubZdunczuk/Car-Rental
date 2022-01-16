@@ -23,14 +23,17 @@
             <table>
                 <colgroup>
                     <col span="1" style="width: 30%;">
-                    <col span="1" style="width: 40%;">
-                    <col span="1" style="width: 30%;">
-
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 20%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 20%;">
                 </colgroup>
                 <tr>
                     <th>auto</th>
                     <th>okres wynajmu</th>
                     <th>dzień rozpoczęcia wynajmu</th>
+                    <th>czy zakończony</th>
+                    <th>całkowity koszt</th>
                 </tr>
 
                 <c:forEach items="${history}" var="history">
@@ -42,10 +45,12 @@
                                     ${history.months} miesiąc/miesięcy
                                 </c:when>
                                 <c:otherwise>
-                                    ${history.days} dni
+                                    ${history.days} dzień/dni
                                 </c:otherwise>
                             </c:choose></td>
                         <td>${history.rentDay.toString()}</td>
+                        <td>${history.rented ? "Nie":"Tak"}</td>
+                        <td>${history.price} PLN</td>
                     </tr>
                 </c:forEach>
             </table>

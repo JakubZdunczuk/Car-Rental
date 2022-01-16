@@ -1,4 +1,5 @@
 package pl.coderslab.carrental.user;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByUsername(username);
     }
+
     @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -44,6 +46,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(long id) {
         return userRepository.findById(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
 }
 
