@@ -19,7 +19,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(Model model) {
-   model.addAttribute("car",carService.findByRentedFalseAndPromotion(1));
+        model.addAttribute("car", carService.findByRentedFalseAndPromotion(1));
         return "index";
     }
 
@@ -28,6 +28,7 @@ public class HomeController {
     public String about() {
         return "about";
     }
+
     @RequestMapping("/contact")
     public String contact() {
         return "contact";

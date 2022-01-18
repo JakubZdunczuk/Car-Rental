@@ -53,11 +53,11 @@ public class CarController {
         Car car = carService.findById(id);
 
         if (rentHistory.getMonths() == 0) {
-            rentHistory.setPrice(rentHistory.getDays()*car.getPrice());
-            model.addAttribute("price",rentHistory.getPrice());
+            rentHistory.setPrice(rentHistory.getDays() * car.getPrice());
+            model.addAttribute("price", rentHistory.getPrice());
         } else {
-            rentHistory.setPrice(rentHistory.getMonths()*car.getPrice()*18);
-            model.addAttribute("price",rentHistory.getPrice());
+            rentHistory.setPrice(rentHistory.getMonths() * car.getPrice() * 18);
+            model.addAttribute("price", rentHistory.getPrice());
         }
         rentHistory.setCar(car);
         User user = userService.findByUserName(rentHistory.getUser().getUsername());

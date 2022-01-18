@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="fragments/header.jsp" %>
 <section class="padding-medium story bg-light" id="about">
-<div class="container d-flex justify-content-center align-items-center">
-   <div class="col-7 ml-4">
-      <h3 class="pb-1">Nowy samochód dodany, wróć do <a href="/dashboard">panelu sterowania</a></h3></div>
-</div>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="col-7 ml-4">
+            <h3 class="pb-1">Nowy samochód dodany, wróć do <a href="/dashboard">panelu sterowania</a></h3></div>
+    </div>
 </section>
 
 <%@ include file="fragments/footer.jsp" %>

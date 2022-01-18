@@ -14,7 +14,6 @@ public class RentHistoryServiceImpl implements RentHistoryService {
 
     @Override
     public void saveHistory(RentHistory rentHistory) {
-
         rentHistoryRepository.save(rentHistory);
     }
 

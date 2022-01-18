@@ -21,17 +21,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, unique = true, length = 60)
-    @NotNull(message = "Wpisz nazwę użytkownika")@NotEmpty(message = "Wpisz nazwę użytkownika")
+    @NotNull(message = "Wpisz nazwę użytkownika")
+    @NotEmpty(message = "Wpisz nazwę użytkownika")
     @Size(min = 3, max = 20, message = "Nazwa użytkownika powinna mieć pomiędzy 3 a 20 znaków")
     private String username;
-    @NotNull(message = "Uzupełnij pole") @NotEmpty(message = "Wpisz hasło")
+    @NotNull(message = "Uzupełnij pole")
+    @NotEmpty(message = "Wpisz hasło")
     @Size(min = 3, max = 60, message = "hasło powinno mieć pomiędzy 3 a 60 znaków")
     private String password;
-    @NotNull(message = "wpisz email") @NotEmpty(message = "Wpisz email")
+    @NotNull(message = "wpisz email")
+    @NotEmpty(message = "Wpisz email")
     @Email
     private String email;
     @Transient
-    @NotNull(message = "wpisz ponownie hasło") @NotEmpty(message = "Wpisz ponownie hasło")
+    @NotNull(message = "wpisz ponownie hasło")
+    @NotEmpty(message = "Wpisz ponownie hasło")
     private String passwordConfirm;
     @Transient
     private String newPassword;

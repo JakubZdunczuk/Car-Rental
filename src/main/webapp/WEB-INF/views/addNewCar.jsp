@@ -5,10 +5,13 @@
 <%@ include file="fragments/header.jsp" %>
 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">MENU</a>
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false">MENU</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/dashboard">Pulpit</a></li>
-            <li><hr class="dropdown-divider"/></li>
+            <li>
+                <hr class="dropdown-divider"/>
+            </li>
             <li><a class="dropdown-item" href="/dashboard/add">Dodaj nowe auto</a></li>
             <li><a class="dropdown-item" href="/dashboard/carList">Edytuj dostępne auta</a></li>
             <li><a class="dropdown-item" href="/dashboard/messages">Wiadomości</a></li>
@@ -48,7 +51,7 @@
     </form:select>
 
     <div>rok produkcji:</div>
-    <form:input type="number"  path="productionYear"/><form:errors path="productionYear"/>
+    <form:input type="number" path="productionYear"/><form:errors path="productionYear"/>
 
     <div>silnik:</div>
     <form:input type="text" path="engine"/><form:errors path="engine"/>
@@ -62,16 +65,16 @@
         <form:option value="Diesel">Diesel</form:option>
         <form:option value="Hybrid">Hybryda</form:option>
         <form:option value="Electric">Elektryczny</form:option>
-            </form:select>
+    </form:select>
 
     <div>Skrzynia biegów:</div>
     <form:select path="gearbox">
-    <form:option value="Automatyczna">Automatyczna</form:option>
-    <form:option value="Manualna">Manualna</form:option>
+        <form:option value="Automatyczna">Automatyczna</form:option>
+        <form:option value="Manualna">Manualna</form:option>
     </form:select>
 
     <div>cena za dzień wynajmu:</div>
-    <form:input type="number"  path="price"/><form:errors path="price"/>
+    <form:input type="number" path="price"/><form:errors path="price"/>
 
     <div>Specyfikacja:</div>
     <form:input type="textarea" path="specification"/><form:errors path="specification"/>

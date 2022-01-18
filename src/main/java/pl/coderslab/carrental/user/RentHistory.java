@@ -2,7 +2,6 @@ package pl.coderslab.carrental.user;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.carrental.car.Car;
 
 import javax.persistence.*;
@@ -29,7 +28,7 @@ public class RentHistory {
     private int months;
     @Column(columnDefinition = "DATE")
     private LocalDate rentDay;
-    private boolean rented=true;
+    private boolean rented = true;
 
     @NotNull
     private long price;

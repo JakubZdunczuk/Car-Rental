@@ -20,22 +20,22 @@
                     <th>akcje</th>
                 </tr>
 
-                    <c:forEach items="${carlist}" var="car">
-                <tr>
-                    <td> ${car.id}</td>
-                    <td>
-                        <img class="card-img-top" style="max-height:80px; max-width:80px;"
-                             src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>" alt="..."/>
-                    </td>
-                    <td>
-                    <h5 class="fw-bolder">${car.model}, silnik: ${car.engine}</h5>
-                    </td>
+                <c:forEach items="${carlist}" var="car">
+                    <tr>
+                        <td> ${car.id}</td>
+                        <td>
+                            <img class="card-img-top" style="max-height:80px; max-width:80px;"
+                                 src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>" alt="..."/>
+                        </td>
+                        <td>
+                            <h5 class="fw-bolder">${car.model}, silnik: ${car.engine}</h5>
+                        </td>
                         <td>
                             <a href="/dashboard/car/${car.id}/price">zmień cenę/promocję</a>
                             <a href="/dashboard/car/${car.id}/delete">usuń</a>
                         </td>
-                </tr>
-    </c:forEach>
+                    </tr>
+                </c:forEach>
 
             </table>
         </div>

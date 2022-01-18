@@ -48,7 +48,7 @@ public class DashboardController {
     @PostMapping("/add")
     public String addNewCarPost(@Valid Car car, BindingResult bindingResult, Model model) {
         model.addAttribute("brandList", brandService.findAll());
-  boolean found=false;
+        boolean found = false;
         if (bindingResult.hasErrors()) {
             return "addNewCar";
         }
@@ -61,10 +61,10 @@ public class DashboardController {
                 carModel.setBrand(car.getModel().getBrand());
                 car.setModel(carModel);
                 carService.saveCar(car);
-                found=true;
+                found = true;
             }
         }
-        if(!found){
+        if (!found) {
             carModel.setModelName(car.getModel().getModelName());
             carModel.setBrand(car.getModel().getBrand());
             carModelService.saveCarModel(carModel);
@@ -83,7 +83,7 @@ public class DashboardController {
 
     @RequestMapping("/carlist")
     public String CarList(Model model) {
-model.addAttribute("carlist", carService.findAll());
+        model.addAttribute("carlist", carService.findAll());
         return "carListEdit";
     }
 
@@ -99,23 +99,23 @@ model.addAttribute("carlist", carService.findAll());
         model.addAttribute("user", user);
         return "changePass";
     }
+
     @PostMapping("/changepass")
     public String ChangePost(User user, BindingResult result, HttpServletRequest servletRequest) {
         User loggedUser = userService.findByUserName(servletRequest.getRemoteUser());
 
-        if(!passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())){
+        if (!passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())) {
             result.rejectValue("password", "error.password", "Hasło nieprawidłowe");
         }
-        if(user.getPassword().equals(user.getNewPassword())){
+        if (user.getPassword().equals(user.getNewPassword())) {
             result.rejectValue("newPassword", "error.newPassword", "Obecne i nowe hasło są takie same");
         }
-        if(!user.getPasswordConfirm().equals(user.getNewPassword())){
+        if (!user.getPasswordConfirm().equals(user.getNewPassword())) {
             result.rejectValue("passwordConfirm", "error.passwordConfirm", "Powtórz nowe hasło");
         }
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "changePass";
-        }
-        else{
+        } else {
             loggedUser.setPassword(user.getNewPassword());
             loggedUser.setPasswordConfirm(user.getPasswordConfirm());
             userService.updateUser(loggedUser);

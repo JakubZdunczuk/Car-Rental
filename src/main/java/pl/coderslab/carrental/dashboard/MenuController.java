@@ -15,7 +15,6 @@ import pl.coderslab.carrental.user.User;
 import pl.coderslab.carrental.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/menu")
@@ -24,7 +23,7 @@ public class MenuController {
     private final RentHistoryService rentHistoryService;
     private final UserService userService;
     private final CarService carService;
-private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     public MenuController(RentHistoryService rentHistoryService, UserService userService, CarService carService, BCryptPasswordEncoder passwordEncoder) {
@@ -46,23 +45,23 @@ private final BCryptPasswordEncoder passwordEncoder;
         model.addAttribute("user", user);
         return "changePass";
     }
+
     @PostMapping("/changepass")
     public String ChangePost(User user, BindingResult result, HttpServletRequest servletRequest) {
         User loggedUser = userService.findByUserName(servletRequest.getRemoteUser());
 
-        if(!passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())){
+        if (!passwordEncoder.matches(user.getPassword(), loggedUser.getPassword())) {
             result.rejectValue("password", "error.password", "Hasło nieprawidłowe");
         }
-        if(user.getPassword().equals(user.getNewPassword())){
+        if (user.getPassword().equals(user.getNewPassword())) {
             result.rejectValue("newPassword", "error.newPassword", "Obecne i nowe hasło są takie same");
         }
-        if(!user.getPasswordConfirm().equals(user.getNewPassword())){
+        if (!user.getPasswordConfirm().equals(user.getNewPassword())) {
             result.rejectValue("passwordConfirm", "error.passwordConfirm", "Powtórz nowe hasło");
         }
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "changePass";
-        }
-        else{
+        } else {
             loggedUser.setPassword(user.getNewPassword());
             loggedUser.setPasswordConfirm(user.getPasswordConfirm());
             userService.updateUser(loggedUser);

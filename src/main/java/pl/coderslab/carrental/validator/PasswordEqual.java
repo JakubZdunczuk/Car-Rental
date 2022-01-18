@@ -13,7 +13,9 @@ import java.lang.annotation.Target;
 public @interface PasswordEqual {
 
     String message() default "default message from custom validator";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }
 

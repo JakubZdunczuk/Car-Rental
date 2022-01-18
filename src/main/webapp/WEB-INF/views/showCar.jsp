@@ -9,14 +9,42 @@
             <c:choose>
                 <c:when test="${car!=null}">
                     <!-- Product image-->
-                    <img class="card-img-top" src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>" alt="..."/>
+                    <img class="card-img-top" src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>"
+                         alt="..."/>
                     <style type="text/css">
-                        .tg  {border-collapse:collapse;border-spacing:0;}
-                        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-                            overflow:hidden;padding:10px 5px;word-break:normal;}
-                        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-                            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-                        .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+                        .tg {
+                            border-collapse: collapse;
+                            border-spacing: 0;
+                        }
+
+                        .tg td {
+                            border-color: black;
+                            border-style: solid;
+                            border-width: 1px;
+                            font-family: Arial, sans-serif;
+                            font-size: 14px;
+                            overflow: hidden;
+                            padding: 10px 5px;
+                            word-break: normal;
+                        }
+
+                        .tg th {
+                            border-color: black;
+                            border-style: solid;
+                            border-width: 1px;
+                            font-family: Arial, sans-serif;
+                            font-size: 14px;
+                            font-weight: normal;
+                            overflow: hidden;
+                            padding: 10px 5px;
+                            word-break: normal;
+                        }
+
+                        .tg .tg-0pky {
+                            border-color: inherit;
+                            text-align: left;
+                            vertical-align: top
+                        }
                     </style>
                     <table class="tg">
                         <thead>
@@ -69,15 +97,16 @@
         </div>
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-<c:choose>
-    <c:when test="${pageContext.request.remoteUser==null}">
-                <h4>Aby wynająć auto, musisz się zalogować</h4>
-        <a class="btn btn-outline-dark mt-auto" href="/cars/${car.id}/rent">Wynajmij (przejdź do logowania)</a>
-    </c:when>
-    <c:otherwise>
-                <a class="btn btn-outline-dark mt-auto" href="/cars/${car.id}/rent">Wynajmij</a>
-    </c:otherwise>
-</c:choose>
+                <c:choose>
+                    <c:when test="${pageContext.request.remoteUser==null}">
+                        <h4>Aby wynająć auto, musisz się zalogować</h4>
+                        <a class="btn btn-outline-dark mt-auto" href="/cars/${car.id}/rent">Wynajmij (przejdź do
+                            logowania)</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="btn btn-outline-dark mt-auto" href="/cars/${car.id}/rent">Wynajmij</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
