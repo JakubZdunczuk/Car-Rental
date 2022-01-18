@@ -1,7 +1,6 @@
 package pl.coderslab.carrental.validator;
 
 import pl.coderslab.carrental.user.User;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

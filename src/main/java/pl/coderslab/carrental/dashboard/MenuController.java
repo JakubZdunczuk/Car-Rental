@@ -13,7 +13,6 @@ import pl.coderslab.carrental.user.RentHistory;
 import pl.coderslab.carrental.user.RentHistoryService;
 import pl.coderslab.carrental.user.User;
 import pl.coderslab.carrental.user.UserService;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Controller

@@ -6,9 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.carrental.validator.PasswordEqual;
 import pl.coderslab.carrental.validator.PasswordValidator;
-
 import javax.validation.Valid;
 import java.util.List;
 

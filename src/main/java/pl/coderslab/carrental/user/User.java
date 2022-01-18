@@ -3,8 +3,6 @@ package pl.coderslab.carrental.user;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.coderslab.carrental.validator.PasswordEqual;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Set;

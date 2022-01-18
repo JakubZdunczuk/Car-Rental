@@ -3,7 +3,6 @@ package pl.coderslab.carrental.user;
 import lombok.Getter;
 import lombok.Setter;
 import pl.coderslab.carrental.car.Car;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;

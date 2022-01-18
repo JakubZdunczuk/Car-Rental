@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.carrental.car.*;
 import pl.coderslab.carrental.user.User;
 import pl.coderslab.carrental.user.UserService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
