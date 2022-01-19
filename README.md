@@ -11,3 +11,7 @@ All you have to do to initiate application is:
 2. Run local database and change login data in "application.properties" (datasource:url,username and password)
 3. Run sqldump to drop some samplary records
 4. Run project!
+
+
+## Errors
+If you find any errors, don't hesitate to contact me, I'm still learning and every advices or comments are welcome!
