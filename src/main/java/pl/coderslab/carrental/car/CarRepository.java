@@ -15,4 +15,5 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     List<Car> findByRentedFalseAndPromotion(int i);
 
     List<Car> findAllByRentedFalse();
+
 }

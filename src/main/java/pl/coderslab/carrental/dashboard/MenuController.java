@@ -13,6 +13,7 @@ import pl.coderslab.carrental.user.RentHistory;
 import pl.coderslab.carrental.user.RentHistoryService;
 import pl.coderslab.carrental.user.User;
 import pl.coderslab.carrental.user.UserService;
+
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -23,18 +24,19 @@ public class MenuController {
     private final UserService userService;
     private final CarService carService;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final MessageService messageService;
 
 
-    public MenuController(RentHistoryService rentHistoryService, UserService userService, CarService carService, BCryptPasswordEncoder passwordEncoder) {
+    public MenuController(RentHistoryService rentHistoryService, UserService userService, CarService carService, BCryptPasswordEncoder passwordEncoder, MessageService messageService) {
         this.rentHistoryService = rentHistoryService;
         this.userService = userService;
         this.carService = carService;
         this.passwordEncoder = passwordEncoder;
+        this.messageService = messageService;
     }
 
     @RequestMapping()
     public String Menu() {
-
         return "menu";
     }
 
@@ -96,5 +98,12 @@ public class MenuController {
         User user = userService.findByUserName(servletRequest.getRemoteUser());
         model.addAttribute("history", rentHistoryService.findAllByUser(user));
         return "rentHistory";
+    }
+
+    @RequestMapping("/messages")
+    public String Messages(Model model, HttpServletRequest servletRequest) {
+        User loggedUser = userService.findByUserName(servletRequest.getRemoteUser());
+        model.addAttribute("messages", messageService.findAllByUser(loggedUser));
+        return "messages";
     }
 }

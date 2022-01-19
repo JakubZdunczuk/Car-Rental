@@ -2,7 +2,7 @@ package pl.coderslab.carrental.user;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.Arrays;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -32,10 +32,9 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByName("ROLE_USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        user.setRoles(new HashSet<>(List.of(userRole)));
         userRepository.save(user);
     }
-
 
     @Override
     public List<User> findAll() {
@@ -51,6 +50,11 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+    }
+
+    @Override
+    public void delete(User user) {
+        userRepository.delete(user);
     }
 }
 

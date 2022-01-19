@@ -18,26 +18,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void delete(Car car) { carRepository.delete(car);}
+    public void delete(Car car) {
+        carRepository.delete(car);
+    }
 
     @Override
     public List<Car> findAllByRentedFalse() {
         return carRepository.findAllByRentedFalse();
-    }
-
-    @Override
-    public List<Car> findByBrand(String name) {
-        return null;
-    }
-
-    @Override
-    public List<Car> findByModel(String name) {
-        return null;
-    }
-
-    @Override
-    public List<Car> findByGearbox(String name) {
-        return null;
     }
 
     @Override
@@ -54,4 +41,5 @@ public class CarServiceImpl implements CarService {
     public Car findById(long id) {
         return carRepository.findById(id);
     }
+
 }

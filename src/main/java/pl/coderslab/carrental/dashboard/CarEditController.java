@@ -7,7 +7,7 @@ import pl.coderslab.carrental.car.Car;
 import pl.coderslab.carrental.car.CarService;
 
 @Controller
-@RequestMapping("dashboard/car")
+@RequestMapping("dashboard/cars")
 public class CarEditController {
     private final CarService carService;
 
@@ -15,19 +15,27 @@ public class CarEditController {
         this.carService = carService;
     }
 
-    @RequestMapping("/{id}/price")
+    @RequestMapping
+    public String carList(Model model) {
+        model.addAttribute("cars", carService.findAll());
+        return "dashboardCarList";
+    }
+
+    @RequestMapping("/{id}")
     public String price(@PathVariable("id") String id, Model model) {
         long idL = Long.parseLong(id);
-        Car car = carService.findById(idL);
-        model.addAttribute("price", car.getPrice());
-        model.addAttribute("promotion", car.getPromotion());
+        model.addAttribute("car", carService.findById(idL));
         return "price";
     }
-    @PostMapping("/{id}/price")
-    public String pricePost(@PathVariable("id") String id, Model model) {
+
+    @PostMapping("/{id}")
+    public String pricePost(@PathVariable("id") String id, Car car) {
         long idL = Long.parseLong(id);
-        Car car = carService.findById(idL);
-        return "price";
+        Car carId = carService.findById(idL);
+        carId.setPrice(car.getPrice());
+        carId.setPromotion(car.getPromotion());
+        carService.saveCar(carId);
+        return "redirect:../cars";
     }
 
     @GetMapping(value = "/{id}/delete")
@@ -35,6 +43,6 @@ public class CarEditController {
         long idL = Long.parseLong(id);
         Car car = carService.findById(idL);
         carService.delete(car);
-        return "redirect:";
+        return "redirect:../../cars";
     }
 }

@@ -9,7 +9,8 @@
             <c:choose>
                 <c:when test="${car!=null}">
                     <!-- Product image-->
-                    <img class="card-img-top" src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>"
+                    <img class="card-img-top" style="height:300px; width:auto"
+                         src="<spring:url value="/images/logos/${car.model.brand.lowercase}.png"/>"
                          alt="..."/>
                     <style type="text/css">
                         .tg {

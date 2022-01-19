@@ -13,13 +13,17 @@ public class CarModelServiceImpl implements CarModelService {
     }
 
     @Override
-    public void saveCarModel(CarModel carModel){carModelRepository.save(carModel);}
+    public void saveCarModel(CarModel carModel) {
+        carModelRepository.save(carModel);
+    }
 
-        public CarModel findById(long id){
+    @Override
+    public CarModel findById(long id) {
         return carModelRepository.findById(id);
-        }
+    }
 
-        public List<CarModel> findAll(){
+    @Override
+    public List<CarModel> findAll() {
         return carModelRepository.findAll();
-        }
+    }
 }

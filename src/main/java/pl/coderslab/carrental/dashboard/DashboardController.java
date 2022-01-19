@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.carrental.car.*;
 import pl.coderslab.carrental.user.User;
 import pl.coderslab.carrental.user.UserService;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
@@ -21,13 +23,15 @@ public class DashboardController {
     private final CarService carService;
     private final BrandService brandService;
     private final CarModelService carModelService;
+    private final MessageService messageService;
     private final PasswordEncoder passwordEncoder;
 
-    public DashboardController(UserService userService, CarService carService, BrandService brandService, CarModelService carModelService, PasswordEncoder passwordEncoder) {
+    public DashboardController(UserService userService, CarService carService, BrandService brandService, CarModelService carModelService, MessageService messageService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.carService = carService;
         this.brandService = brandService;
         this.carModelService = carModelService;
+        this.messageService = messageService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -51,21 +55,18 @@ public class DashboardController {
         if (bindingResult.hasErrors()) {
             return "addNewCar";
         }
-        CarModel carModel = new CarModel();
+
         List<CarModel> carModelList = carModelService.findAll();
         for (CarModel cm : carModelList) {
             if (car.getModel().getModelName().equals(cm.getModelName()) && car.getModel().getBrand().equals(cm.getBrand())) {
-                carModel.setId(cm.getId());
-                carModel.setModelName(car.getModel().getModelName());
-                carModel.setBrand(car.getModel().getBrand());
-                car.setModel(carModel);
+                car.setModel(cm);
                 carService.saveCar(car);
                 found = true;
             }
         }
+
         if (!found) {
-            carModel.setModelName(car.getModel().getModelName());
-            carModel.setBrand(car.getModel().getBrand());
+            CarModel carModel = new CarModel(car.getModel().getModelName(), car.getModel().getBrand());
             carModelService.saveCarModel(carModel);
             car.setModel(carModel);
             carService.saveCar(car);
@@ -79,17 +80,34 @@ public class DashboardController {
         return "caradded";
     }
 
-
-    @RequestMapping("/carlist")
-    public String CarList(Model model) {
-        model.addAttribute("carlist", carService.findAll());
-        return "carListEdit";
-    }
-
     @RequestMapping("/messages")
     public String Messages(Model model) {
-
+        model.addAttribute("messages", messageService.findAll());
         return "messages";
+    }
+
+    @RequestMapping("/messages/{id}")
+    public String ReadMessage(Model model, @PathVariable String id) {
+        long idL = Long.parseLong(id);
+        Message message = messageService.findById(idL);
+        if (!message.isRead()) {
+            message.setRead(true);
+        }
+        model.addAttribute("message", message);
+        return "viewMessage";
+    }
+
+    @RequestMapping("/messages/{id}/read")
+    public String changeRead(@PathVariable String id) {
+        long idL = Long.parseLong(id);
+        Message message = messageService.findById(idL);
+        if (!message.isRead()) {
+            message.setRead(true);
+        } else {
+            message.setRead(false);
+        }
+        messageService.saveMessage(message);
+        return "redirect:../../messages";
     }
 
     @RequestMapping("/changepass")
@@ -130,6 +148,14 @@ public class DashboardController {
     @RequestMapping("/users")
     public String UserList(Model model) {
         model.addAttribute("userList", userService.findAll());
-        return "UserList";
+        return "userList";
+    }
+
+    @RequestMapping("/users/{id}/delete")
+    public String deleteUser(@PathVariable String id) {
+        long idL = Long.parseLong(id);
+        User user = userService.findById(idL);
+        userService.delete(user);
+        return "redirect:../../userList";
     }
 }

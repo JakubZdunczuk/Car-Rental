@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Locale;
 
 @Getter
 @Setter
@@ -22,5 +21,7 @@ public class Brand {
         return brandName;
     }
 
-    public String getLowercase() { return brandName.toLowerCase(); }
+    public String getLowercase() {
+        return brandName.toLowerCase();
+    }
 }

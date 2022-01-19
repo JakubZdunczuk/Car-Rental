@@ -7,6 +7,7 @@ import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.carrental.validator.PasswordValidator;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,18 +24,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
-//    @GetMapping("/create-user")
-//    @ResponseBody
-//    public String createUser() {
-//        User user = new User();
-//        user.setUsername("admin");
-//        user.setPassword("admin");
-//        user.setEmail("admin@admin.com");
-//        user.setPasswordConfirm("admin");
-//        userService.saveUser(user);
-//        return "admin";
-//    }
 
     @RequestMapping(value = "/login")
     public String login(Model model) {
