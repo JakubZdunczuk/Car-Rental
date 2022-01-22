@@ -1,0 +1,255 @@
+-- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
+--
+-- Host: 127.0.0.1    Database: longrental
+-- ------------------------------------------------------
+-- Server version	8.0.27-0ubuntu0.20.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `brands`
+--
+
+DROP TABLE IF EXISTS `brands`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `brands` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `brands`
+--
+
+LOCK TABLES `brands` WRITE;
+/*!40000 ALTER TABLE `brands` DISABLE KEYS */;
+INSERT INTO `brands` VALUES (1,'Abarth'),(2,'Acura'),(3,'Alfa-romeo'),(4,'Alpina'),(5,'Alpine'),(6,'Ariel'),(7,'Arrinera'),(8,'Aston-martin'),(9,'Audi'),(10,'Audi-sport'),(11,'Austin'),(12,'Bac'),(13,'Bentley'),(14,'Bertone'),(15,'Bmw'),(16,'Bmw-m'),(17,'Brabus'),(18,'Bugatti'),(19,'Buick'),(20,'Cadillac'),(21,'Caterham'),(22,'Chevrolet'),(23,'Chevrolet-corvette'),(24,'Chrysler'),(25,'Citroen'),(26,'Dacia'),(27,'Daewoo'),(28,'Daf'),(29,'Daihatsu'),(30,'Daimler'),(31,'Datsun'),(32,'Dodge'),(33,'Dodge-viper'),(34,'Ds'),(35,'Ferrari'),(36,'Fiat'),(37,'Fisker'),(38,'Ford'),(39,'Ford-mustang'),(40,'Fso'),(41,'General-motors'),(42,'Genesis'),(43,'Gmc'),(44,'Hennessey'),(45,'Hispano-suiza'),(46,'Holden'),(47,'Honda'),(48,'Hummer'),(49,'Hyundai'),(50,'Infiniti'),(51,'Isuzu'),(52,'Iveco'),(53,'Jaguar'),(54,'Jawa'),(55,'Jeep'),(56,'Kamaz'),(57,'Karma'),(58,'Kia'),(59,'Koenigsegg'),(60,'Ktm'),(61,'Lamborghini'),(62,'Lancia'),(63,'Land-rover'),(64,'Lexus'),(65,'Lincoln'),(66,'Lotus'),(67,'Man'),(68,'Mansory'),(69,'Maserati'),(70,'Maybach'),(71,'Mazda'),(72,'Mclaren'),(73,'Mercedes-amg'),(74,'Mercedes-benz'),(75,'Mg'),(76,'Mini'),(77,'Mitsubishi'),(78,'Morgan'),(79,'Nissan'),(80,'Nissan-gt-r'),(81,'Nissan-nismo'),(82,'Oldsmobile'),(83,'Opel'),(84,'Pagani'),(85,'Peugeot'),(86,'Pininfarina'),(87,'Plymouth'),(88,'Polestar'),(89,'Pontiac'),(90,'Porsche'),(91,'Ram'),(92,'Renault'),(93,'Rimac'),(94,'Rolls-royce'),(95,'Rover'),(96,'Saab'),(97,'Saleen'),(98,'Saturn'),(99,'Scania'),(100,'Scion'),(101,'Seat'),(102,'Skoda'),(103,'Smart'),(104,'Ssangyong'),(105,'Subaru'),(106,'Suzuki'),(107,'Tata'),(108,'Tesla'),(109,'Toyota'),(110,'Triumph'),(111,'Uaz'),(112,'Vauxhall'),(113,'Volkswagen'),(114,'Volvo'),(115,'Wartburg'),(116,'Wiesmann'),(117,'Zastava');
+/*!40000 ALTER TABLE `brands` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cars`
+--
+
+DROP TABLE IF EXISTS `cars`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cars` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `car_body` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `colour` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `engine` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fuel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gearbox` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` bigint NOT NULL,
+  `production_year` int NOT NULL,
+  `promotion` int NOT NULL,
+  `specification` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint NOT NULL,
+  `rented` bit(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKrwe6b2vd08hb4gnst223xsna4` (`model_id`),
+  CONSTRAINT `FKrwe6b2vd08hb4gnst223xsna4` FOREIGN KEY (`model_id`) REFERENCES `models` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cars`
+--
+
+LOCK TABLES `cars` WRITE;
+/*!40000 ALTER TABLE `cars` DISABLE KEYS */;
+INSERT INTO `cars` VALUES (1,'Hatchback','czerwony','2.0 TSI','PB','Automatyczna',120,2020,0,'szyberdach, LED, klimatyzacja',1,_binary '\0'),(2,'Kombi','czarny','1.9 TDI','Diesel','Manualna',70,2007,1,'klimatyzacja, elektryczne szyby',5,_binary '\0'),(3,'Cabrio','niebieski','2.0','PB','Automatyczna',120,2018,0,'podgrzewane fotele, elektrycznie składane lusterka',6,_binary '\0'),(4,'Hatchback','zielony','1.0','PB','Automatyczna',50,2020,0,'elektryczne szyby przednie',9,_binary '\0'),(5,'Sedan','czarny','1.9','PB','Manualna',90,2010,1,'tempomat',10,_binary ''),(6,'Sedan','biały','1.5 TSI','PB','Automatyczna',125,2021,0,'wszystko ma',5,_binary '\0'),(8,'Coupe','niebieski','2.0','PB','Automatyczna',150,2020,0,'wszystko ma',12,_binary '\0'),(14,'Hatchback','pomarańczowy','1.1','PB','Manualna',40,2019,0,'full opcja bez klimy',9,_binary '');
+/*!40000 ALTER TABLE `cars` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `message` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_read` bit(1) NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKpdrb79dg3bgym7pydlf9k3p1n` (`user_id`),
+  CONSTRAINT `FKpdrb79dg3bgym7pydlf9k3p1n` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message`
+--
+
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` VALUES (1,'testowa wiadomosc',_binary '\0','testowy temat',1);
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `models`
+--
+
+DROP TABLE IF EXISTS `models`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `models` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `model_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `brand_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK420yixbri0is6b6lvny1hn9yf` (`brand_id`),
+  CONSTRAINT `FK420yixbri0is6b6lvny1hn9yf` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `models`
+--
+
+LOCK TABLES `models` WRITE;
+/*!40000 ALTER TABLE `models` DISABLE KEYS */;
+INSERT INTO `models` VALUES (1,'Leon',101),(2,'Uno',36),(3,'Ateca',101),(4,'Tipo',36),(5,'Passat',113),(6,'Seria 4',15),(9,'Punto',36),(10,'159',3),(11,'Passat',113),(12,'A110',5),(14,'G',17);
+/*!40000 ALTER TABLE `models` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rent_history`
+--
+
+DROP TABLE IF EXISTS `rent_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rent_history` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `days` int NOT NULL,
+  `months` int NOT NULL,
+  `rent_day` date DEFAULT NULL,
+  `rented` bit(1) NOT NULL,
+  `car_id` bigint NOT NULL,
+  `user_id` bigint NOT NULL,
+  `price` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKkx90covunq25ilv27qqjlmln8` (`car_id`),
+  KEY `FKqyvfiab1v34m7jjunk57altk` (`user_id`),
+  CONSTRAINT `FKkx90covunq25ilv27qqjlmln8` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`),
+  CONSTRAINT `FKqyvfiab1v34m7jjunk57altk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rent_history`
+--
+
+LOCK TABLES `rent_history` WRITE;
+/*!40000 ALTER TABLE `rent_history` DISABLE KEYS */;
+INSERT INTO `rent_history` VALUES (1,0,6,'2022-01-16',_binary '\0',3,1,540),(3,0,9,'2022-01-18',_binary '\0',3,1,19440),(4,0,3,'2022-01-16',_binary '\0',6,1,6750);
+/*!40000 ALTER TABLE `rent_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'ROLE_USER'),(2,'ROLE_ADMIN');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_role`
+--
+
+DROP TABLE IF EXISTS `user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_role` (
+  `user_id` bigint NOT NULL,
+  `role_id` int NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`),
+  CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
+  CONSTRAINT `FKj345gk1bovqvfame88rcx7yyx` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_role`
+--
+
+LOCK TABLES `user_role` WRITE;
+/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+INSERT INTO `user_role` VALUES (1,1),(2,1),(3,1),(4,2);
+/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'aaa@mail.com','$2a$10$Uvk6tI/kyHhDPDzvNhpfmOFgiJz8rnvNqogkEy3.MVA6NsXCd/sXS','asd'),(2,'sadadas@yahoo.com','$2a$10$PjIxTRk1ESr31xSU/M0HOuqE2X7QrENOwvmprrX801fGinkFDMILS','abcd'),(3,'sz.stasik@aho.pl','$2a$10$aL7Yk2G7iCvvUodD8kZ8ie7UoJwzzpRO7NANUzLv5qRdVTNuaPRvS','kuba123'),(4,'admin@admin.com','$2a$10$8QALqHdkulTZb9WdzDcx1eKMIIgrujigM0lkYS4DuRKsmyFGb3rYS','admin');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-01-19 23:52:42
